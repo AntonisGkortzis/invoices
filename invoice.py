@@ -198,7 +198,7 @@ def num_to_text_thousands(number, english=False):
     if english:
         thousands_arr = thousands_en
     else:
-        thousands_arr = thousands        
+        thousands_arr = thousands
     if th > 1:
         return "{0} {1} {2}".format(num_to_text_hundreds(th, True, english),
                                     thousands_arr[1],
@@ -214,7 +214,7 @@ def num_to_text_millions(number, english=False):
     if english:
         millions_arr = millions_en
     else:
-        millions_arr = millions    
+        millions_arr = millions
     if m > 1:
         return "{0} {1} {2}".format(num_to_text_hundreds(m, False),
                                     millions_arr[1],
@@ -242,7 +242,7 @@ def num_to_text_billions(number, english=False):
                                     num_to_text_millions(r, english))
     else:
         return num_to_text_millions(number, english)
-    
+
 def num_to_text(number, english=False):
     return num_to_text_billions(number, english)
 
@@ -251,7 +251,7 @@ def make_percentage(number):
     if percentage.endswith('.00'):
         percentage = percentage.replace('.00', '')
     return percentage
-    
+
 parser = argparse.ArgumentParser(description='Invoice generator')
 parser.add_argument('invoice_data')
 parser.add_argument('-t', '--template', dest='template',
@@ -279,6 +279,7 @@ description = root.find('description').text
 value_f = float(root.find('value').text)
 tax_rate_el = root.find('tax_rate')
 uni_rate_el = root.find('uni_rate')
+comment = root.find('comment').text
 if tax_rate_el is not None:
     tax_rate = tax_rate_el.text
 else:
@@ -309,19 +310,19 @@ else:
 total_f = value_f + vat_f
 tax = "{:.2f}".format(tax_f)
 vat = "{:.2f}".format(vat_f)
-total = "{:.2f}".format(total_f) 
+total = "{:.2f}".format(total_f)
 (intpart, floatpart) = total.split('.')
 
 numbertext = "{0} ευρώ".format(num_to_text(int(intpart)))
 
 uni_f = value_f * uni_rate_f
-uni = "{:.2f}".format(uni_f) 
+uni = "{:.2f}".format(uni_f)
 
 if args.english:
     numbertext_en = "{0} euros".format(num_to_text(int(intpart), True))
 else:
     numbertext_en = ""
-    
+
 if floatpart != '' :
     floatpart_i = int(floatpart)
     if floatpart_i > 0:
@@ -336,7 +337,7 @@ if floatpart != '' :
             if floatpart_i > 1:
                 dec_desc = 'cents'
             else:
-                dec_desc = 'cent'            
+                dec_desc = 'cent'
             numbertext_en = "{0} and {1} {2}".format(numbertext_en,
                                                      num_to_text(
                                                          int(floatpart),
@@ -344,7 +345,7 @@ if floatpart != '' :
                                                      dec_desc)
 
 outfn = 'invoice_' + num + '.tex'
-  
+
 with open(args.template, mode='r', encoding='utf-8') as inf:
     with open(outfn, mode='w', encoding='utf-8') as outf:
         for line in inf:
@@ -358,6 +359,7 @@ with open(args.template, mode='r', encoding='utf-8') as inf:
             line = line.replace("{{TAXNUMBER}}", taxnumber)
             line = line.replace("{{DESCRIPTION}}", description)
             line = line.replace("{{VALUE}}", value)
+            line = line.replace("{{COMMENT}}", comment)
             line = line.replace("{{TAXRATE}}", tax_rate_prc)
             line = line.replace("{{TAX}}", tax)
             line = line.replace("{{VATRATE}}", vat_rate_prc)

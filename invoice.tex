@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-\usepackage{fontspec} 
+\usepackage{fontspec}
 \usepackage{multirow}
 
 \usepackage[framemethod=TikZ]{mdframed}
@@ -13,7 +13,7 @@
 
 \thispagestyle{empty}
 % DOCUMENT LAYOUT
-\usepackage[vmargin=5cm]{geometry} 
+\usepackage[vmargin=5cm]{geometry}
 \geometry{a4paper, textwidth=6in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
 \setlength\parindent{0in}
 
@@ -21,12 +21,12 @@
 \usepackage{xunicode}
 \usepackage{xltxtra}
 
-\defaultfontfeatures{Mapping=tex-text} 
+\defaultfontfeatures{Mapping=tex-text}
 \setromanfont [Ligatures={Common},
 BoldFont={DejaVu Serif Bold},ItalicFont={DejaVu Serif Italic}]{DejaVu Serif}
 \setsansfont [Ligatures={Common}, BoldFont={DejaVu Sans Bold},
 ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
-\setmonofont[Scale=0.8]{DejaVu Sans Mono} 
+\setmonofont[Scale=0.8]{DejaVu Sans Mono}
 
 \begin{document}
 
@@ -58,9 +58,10 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
 \begin{tabu} to \textwidth {|X[4]|>{\tabudecimal \usermacro}X[r]|}
   \hline
   \begin{center}ΑΙΤΙΟΛΟΓΙΑ---ΠΕΡΙΓΡΑΦΗ \end{center}& \begin{center}ΑΞΙΑ\end{center}\\
-  \hline 
-  {{DESCRIPTION}} & {{VALUE}}\\ 
+  \hline
+  {{DESCRIPTION}} & {{VALUE}}\\
   \vspace{5cm} & \\
+  {{COMMENT}} & \\
   Παρακρατήθηκε φόρος \numprint{{{TAXRATE}}}\% = \euro\,\numprint{{{TAX}}} & \\
   \hline
 \end{tabu}
@@ -68,7 +69,7 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
 \vspace{1cm}
 \begin{tabu} to \textwidth {|X[1]|X[3]|X[1.1]|>{\tabudecimal \usermacro}X[r]|}
 \hline
-\multirow{3}{*}{Ολογράφως} & \multirow{3}{6cm}{{{NUMBERTEXT}}}  
+\multirow{3}{*}{Ολογράφως} & \multirow{3}{6cm}{{{NUMBERTEXT}}}
 & Αξία: & {{VALUE}} \\
  & & ΦΠΑ \numprint{{{VATRATE}}}\%: & \euro\,\numprint{{{VAT}}} \\
  & & Σύνολο: & {{TOTAL}} \\

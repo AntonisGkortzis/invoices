@@ -21,6 +21,8 @@
   βάσει σύμβασης 2341/22-12-2012
   </description>
   <value>99999.99</value>
+  <comment> Υπάγομαι στην παρ. 9 του άρθρου 39 του ν. 4387/2016
+  </comment>
   <tax_rate>0.20</tax_rate>
   <vat_rate>0.23</vat_rate>
 </invoice>
